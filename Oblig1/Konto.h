@@ -6,10 +6,10 @@ class Konto
 {
 private:
 	int id;
-	//settes når objektet opprettes
-	Valuta valuta;
-	//starter på 0, alltid >= 0
+    //starter pÃ¥ 0, alltid >= 0
 	double beholdning;
+	//settes nÃ¥r objektet opprettes
+	Valuta valuta;
 
 public:
 	Konto(Valuta v);

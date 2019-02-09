@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 #include <string>
 #include <iostream>
 #include "Konto.h"
@@ -10,11 +9,11 @@ private:
 
 	int id;
 	std::string navn;
-	Konto konto;
+	Konto& konto;
 
 public:
 
-	Spiller(std::string n, Konto konto);
+	Spiller(std::string n, Konto& konto);
 	void setNavn(std::string n);
 	std::string getNavn() const;
 	int getId() const;

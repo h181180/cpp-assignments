@@ -1,10 +1,9 @@
-#include "pch.h"
 #include "Spiller.h"
 
 
 
 
-Spiller::Spiller (std::string n, Konto konto) : id(spillere++), navn(n), konto(konto)
+Spiller::Spiller (std::string n, Konto& konto) : id(spillere++), navn(n), konto(konto)
 {
 
 }
