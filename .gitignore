@@ -1,0 +1,16 @@
+*.obj
+*.sln
+Debug/
+Testing/
+.vs
+*.exe
+*.ilk
+*.pdb
+*.idb
+*.log
+*.vcxproj
+*.filters
+*.user
+*.pch
+pch.cpp
+pch.h
