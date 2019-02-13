@@ -19,10 +19,9 @@ public:
 	bool uttak(double u);
 	//max 8 desimaler (bitcoin)
 	double getBeholdning() const;
+    int getId() const;
 	Valuta getValuta() const;
-
+    
 	static int kontoer;
-
-
 };
 

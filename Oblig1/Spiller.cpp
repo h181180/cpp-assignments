@@ -3,7 +3,7 @@
 
 
 
-Spiller::Spiller (std::string n, Konto& konto) : id(spillere++), navn(n), konto(konto)
+Spiller::Spiller (std::string n, Konto* konto, std::vector<Transaksjon>& t) : id(spillere++), navn(n), konto(konto), transaksjoner(t) 
 {
 
 }
@@ -25,28 +25,29 @@ int Spiller::getId() const
 
 Valuta Spiller::getValuta() const
 {
-	return konto.getValuta();
+	return konto->getValuta();
 }
 
 double Spiller::getBeholdning() const
 {
-	return konto.getBeholdning();
+	return konto->getBeholdning();
 }
 
 bool Spiller::uttak(double u)
 {
-	return konto.uttak(u);
+	return konto->uttak(u);
 }
 
 bool Spiller::innskudd(double i)
 {
-	return konto.innskudd(i);
+	return konto->innskudd(i);
 }
 
 bool Spiller::betal(Spiller& spiller, double b)
 {
-	if (konto.getBeholdning() >= b && konto.getValuta() == spiller.getValuta())
+	if (konto->getBeholdning() >= b && konto->getValuta() == spiller.getValuta())
 	{
+        transaksjoner.push_back(Transaksjon(id, spiller.getId(), b));
 		return uttak(b) && spiller.innskudd(b);
 	}
 	else
@@ -56,4 +57,8 @@ bool Spiller::betal(Spiller& spiller, double b)
 	}
 }
 
+int Spiller::getKontoId() const 
+{
+    return konto->getId();
+}
 

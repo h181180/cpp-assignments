@@ -33,6 +33,8 @@ bool Konto::uttak(double u)
 }
 
 
+
+
 /*
 	returnerer med 8 desimaler med bitcoin, 2 desimaler for resten
 */
@@ -52,4 +54,9 @@ double Konto::getBeholdning() const
 Valuta Konto::getValuta() const
 {
 	return valuta;
+}
+
+int Konto::getId() const 
+{
+    return id;
 }

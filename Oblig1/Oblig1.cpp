@@ -6,31 +6,47 @@
 int Konto::kontoer = 0;
 int Spiller::spillere = 0;
 
+
+
+//lager en liste med spillere og kontoer med valgt valuta
+std::vector<Spiller*> spillerListe(std::string *navn, int size, Valuta v)
+{
+    std::vector<Transaksjon> t;
+    std::vector<Spiller*> liste;
+    std::string* p = navn;
+    for(int i = 0; i < size; i++)
+    {
+        
+        Spiller* s = new Spiller(*p,new Konto(v),t);
+        s->innskudd(2000);
+        std::cout << s->getBeholdning() << std::endl;
+        liste.push_back(s);
+        p++;
+    }
+    return liste;
+}
+
+
 int main()
 {
-	Konto k1(Valuta::Bitcoin);
-	Konto k2(Valuta::Gullmynter);
-	Konto k3(Valuta::Hackos);
-	Konto k4(Valuta::Bitcoin);
-
-	std::vector<Spiller> spillerListe;
-
 	
-	Spiller a("Jens", k1);
-	a.innskudd(2000);
-	Spiller b("Bob", k2);
-	b.innskudd(200);
-	Spiller c("Peter", k3);
-	c.innskudd(400);
-	Spiller d("Patty", k4);
-	d.innskudd(1000);
-	
-	a.betal(d, 1500);
-	a.betal(b, 500);
-	a.betal(d, 1000);
-
-
-	
-
-    std::cout << a << b << c << d; 
+    std::string navneliste[4] = {"Jon", "Rick", "Dave", "Daniel"};
+    std::string* nl = navneliste;
+    Konto k(Valuta::Bitcoin);
+    k.innskudd(1000);
+    std::cout << k.getBeholdning() << std::endl;
+    std::vector<Spiller*> ss = spillerListe(nl, 4, Valuta::Bitcoin);
+    
+    for(std::vector<Spiller*>::iterator it = ss.begin(); it != ss.end(); it++)
+    {
+        std::cout << **it << std::endl;
+    }
+    
+    Konto* k2 = new Konto(Valuta::Hackos);
+    std::vector<Transaksjon> abc;
+    Spiller s1("Test", k2, abc);
+    s1.innskudd(1500);
+    std::cout << s1 << std::endl;
+    
 }
+
