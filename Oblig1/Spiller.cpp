@@ -8,6 +8,11 @@ Spiller::Spiller (std::string n, Konto* konto, std::vector<Transaksjon>& t) : id
 
 }
 
+Spiller::~Spiller()
+{
+    delete konto;
+}
+
 void Spiller::setNavn(std::string n)
 {
 	this->navn = n;
@@ -62,3 +67,29 @@ int Spiller::getKontoId() const
     return konto->getId();
 }
 
+bool Spiller::operator==(const Spiller& s) const
+{
+    return navn == s.getNavn() && getValuta() == s.getValuta();
+}
+
+Spiller& Spiller::operator+(Spiller& s)
+{
+    if(getValuta() == s.getValuta())
+    {
+        konto->innskudd(s.getBeholdning());
+        s.uttak(s.getBeholdning());
+    }
+    
+    return *this;   
+}
+
+Spiller& Spiller::operator-(Spiller& s)
+{
+    if(getValuta() == s.getValuta())
+    {
+        s.innskudd(konto->getBeholdning());
+        uttak(konto->getBeholdning());
+    }
+    
+    return *this;
+}

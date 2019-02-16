@@ -18,6 +18,7 @@ private:
 public:
 
 	Spiller(std::string n, Konto* konto, std::vector<Transaksjon>& t);
+    ~Spiller();
 	void setNavn(std::string n);
 	std::string getNavn() const;
 	int getId() const;
@@ -29,7 +30,12 @@ public:
 
 	bool betal(Spiller& spiller, double belop);
 	void opprettTransaksjon(Spiller& spiller, double belop);
-	//sjekke om begge spillerene bruker samme valuta
+	
+    // overfører alt til denne spilleren
+    Spiller& operator+(Spiller& s);
+    // overfører alt fra denne spilleren
+    Spiller& operator-(Spiller& s);
+    // sjekker om samme navn
 	bool operator==(const Spiller& spiller) const;
 	friend std::ostream& operator<<(std::ostream& stream, const Spiller& s);
 	static int spillere;
@@ -40,6 +46,7 @@ public:
 
 inline std::ostream& operator<<(std::ostream& stream, const Spiller& s)
 {
-	stream << "Spiller: " << s.navn << "(" << s.id << ")" << "\n" << "Konto: " << s.getBeholdning() << "\tid: " << s.getKontoId() << "\n\n";
+	stream << "Spiller: " << s.navn << "(" << s.id << ")" << "\n" << "Konto: " 
+    << s.getBeholdning() << "\tid: " << s.getKontoId() << "\n\n";
 	return stream;
 }

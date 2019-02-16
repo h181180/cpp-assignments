@@ -14,6 +14,6 @@ public:
 
 inline std::ostream& operator<<(std::ostream& stream, const Transaksjon& t)
 {
-    stream << "\t[Transaksjon]\n" << t.belop << " til konto " << t.tilId << ", \n" << "fra konto " << t.fraId << "\n";
+    stream << "\t[Transaksjon]\n" << "+" << t.belop << " til konto " << t.tilId << ", \n" << "fra konto " << t.fraId << "\n\n";
     return stream;
 }
